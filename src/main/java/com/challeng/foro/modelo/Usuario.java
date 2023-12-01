@@ -10,18 +10,21 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "curso")
-@Entity(name = "Curso")
-public class Curso {
+@Table(name = "usuario")
+@Entity(name = "Usuario")
+public class Usuario {
 
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int Id;
 
-    @Column(name = "NOMBRE_CURSO")
-    private String nombreCurso;
+    @Column(name = "NOMBRE")
+    private String nombre;
 
-    @Column(name = "CATEGORIA")
-    private int categoria;
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "CONTRASENA")
+    private String contrasena;
 }
