@@ -1,6 +1,5 @@
 package com.challeng.foro.modelo;
 
-import com.challeng.foro.enums.Categoria;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,15 +11,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-@Table(name = "curso")
-@Entity(name = "Curso")
-public class Curso {
+@Table(name = "usuario")
+@Entity(name = "Usuario")
+public class Usuario {
 
     @Id
     private int id;
 
-    private String nombreCurso;
+    private String nombre;
 
-    @Enumerated(EnumType.STRING)
-    private Categoria categoria;
+    private String email;
+
+    private String contrasena;
 }
