@@ -12,9 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("/topicos")
 public class TopicoController {
 
+<<<<<<< HEAD
 //    @PostMapping
   //  public void nuevoTopico(topicoRepsitory newTopico) {
 
         
  //   }
+=======
+    @PostMapping
+    public void nuevoTopico(topicoRepsitory newTopico) {
+
+        
+    }
+>>>>>>> 894ea5cb0edfb17796a07703b13bd9b2fa021330
 }
