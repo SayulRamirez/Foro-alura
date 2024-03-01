@@ -3,8 +3,6 @@ package com.challeng.foro.controllers;
 import com.challeng.foro.exceptions.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -12,7 +10,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestControllerAdvice
@@ -31,18 +28,4 @@ public class RestResponseEntityEcxeptionHandler
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
-
-
-    /*@ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> errorValidation(MethodArgumentNotValidException e) {
-        List<ValidationErrorData> errors = e.getFieldErrors().stream().map(ValidationErrorData::new).toList();
-
-        return ResponseEntity.badRequest().body(errors);
-    }
-
-    private record ValidationErrorData(String field, String error) {
-        public ValidationErrorData(FieldError error) {
-            this(error.getField(), error.getDefaultMessage());
-        }
-    }*/
 }
