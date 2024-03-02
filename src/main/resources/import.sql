@@ -13,3 +13,8 @@ insert into courses(category_id, name) values (4 ,'Principios de base de datos c
 insert into courses(category_id, name) values (4 ,'Avanzando en MySQL, consultas avanzadas y procedimientos almacenados');
 insert into courses(category_id, name) values (5 ,'Página web desde cero');
 insert into courses(category_id, name) values (2 ,'Ciberseguridad desde los fundamentos con Python');
+
+insert into status(status) values ('NO RESPONDIDO');
+insert into status(status) values ('NO SOLUCIONADO');
+insert into status(status) values ('SOLUCIONADO');
+insert into status(status) values ('CERRADO');
