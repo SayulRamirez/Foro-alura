@@ -8,18 +8,17 @@ public class User {
 
     private Long id;
 
-    @Size(min = 10, max = 30, message = "Maxímo 30 caracteres")
-    @NotEmpty(message = "El campo debe de ser llenado")
+    @Size(min = 10, max = 30, message = "It should contain between 10 and 30 charactes")
+    @NotEmpty(message = "The field must be fielled in")
     private String name;
 
-    @Size(min = 10, max = 20, message = "Maxímo 20 caracteres")
-    @NotEmpty(message = "El campo debe de ser llenado")
+    @Size(min = 10, max = 20, message = "It should contain between 10 and 20 charactes")
+    @NotEmpty(message = "The field must be fielled in")
     private String email;
 
-    @Size(min = 8, max = 15, message = "Maxímo 15 caracteres")
-    @NotEmpty(message = "El campo debe de ser llenado")
+    @Size(min = 8, max = 15, message = "It should contain between 8 and 15 characters")
+    @NotEmpty(message = "The field must be fielled in")
     private String password;
-
     public User(){}
 
     public User(Long id, String name, String email, String password) {
