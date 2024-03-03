@@ -34,4 +34,10 @@ public class UserServiceImpl implements UserService {
 
         return repository.existsByEmail(email);
     }
+
+    @Override
+    public UserEntity existsById(Long id) {
+
+        return repository.findById(id).orElse(null);
+    }
 }

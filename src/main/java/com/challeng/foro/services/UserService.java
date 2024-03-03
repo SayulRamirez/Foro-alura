@@ -1,6 +1,7 @@
 package com.challeng.foro.services;
 
 import com.challeng.foro.domain.User;
+import com.challeng.foro.entities.UserEntity;
 
 public interface UserService {
 
@@ -8,4 +9,5 @@ public interface UserService {
 
     boolean existsByEmail(String email);
 
+    UserEntity existsById(Long id);
 }
