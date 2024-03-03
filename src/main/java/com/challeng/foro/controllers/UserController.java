@@ -1,7 +1,7 @@
 package com.challeng.foro.controllers;
 
 import com.challeng.foro.domain.User;
-import com.challeng.foro.exceptions.BadRequestException;
+import com.challeng.foro.exceptions.BadParameterRequestException;
 import com.challeng.foro.services.UserService;
 import com.challeng.foro.services.UserServiceImpl;
 import jakarta.validation.Valid;
@@ -27,7 +27,7 @@ public class UserController {
     @PostMapping("/new")
     public ResponseEntity<User> create(@Valid @RequestBody User user) {
 
-        if (service.existsByEmail(user.getEmail())) throw new BadRequestException("The email exists") ;
+        if (service.existsByEmail(user.getEmail())) throw new BadParameterRequestException("The email exists") ;
 
         service.create(user);
 

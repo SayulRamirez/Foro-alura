@@ -24,15 +24,15 @@ public class TopicEntity implements Serializable {
     @Column(name = "publication_date")
     private LocalDateTime publicationDate;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_status_topic"))
     private StatusEntity status;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_author_topic"))
     private UserEntity author;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_course_topic"))
     private CourseEntity course;
 
@@ -105,5 +105,12 @@ public class TopicEntity implements Serializable {
 
     public void setCourse(CourseEntity course) {
         this.course = course;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.publicationDate = LocalDateTime.now();
+        this.status = new StatusEntity();
+        status.setId(1);
     }
 }

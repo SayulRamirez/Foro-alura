@@ -27,18 +27,19 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public Topic create(CreateTopic createTopic, UserEntity user, CourseEntity course) {
+    public ResponseCreateTopic create(CreateTopic createTopic, UserEntity user, CourseEntity course) {
 
         TopicEntity topic = new TopicEntity(null, createTopic.title(), createTopic.content(), null, null, user, course);
 
-        return new Topic(
+        topicRepository.save(topic);
+
+        return new ResponseCreateTopic(
                 topic.getId(),
                 topic.getTitle(),
                 topic.getMessage(),
                 topic.getPublicationDate(),
-                null,
-                new User(topic.getAuthor().getId(), topic.getAuthor().getName(), null, null),
-                new Course(null, topic.getTitle(), new Category(null, topic.getCourse().getCategory().getNameCategory()))
+                new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
+                new CourseR(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory())
         );
     }
 }

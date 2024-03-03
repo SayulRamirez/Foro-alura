@@ -1,6 +1,6 @@
 package com.challeng.foro.controllers;
 
-import com.challeng.foro.exceptions.BadRequestException;
+import com.challeng.foro.exceptions.BadParameterRequestException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -22,7 +22,7 @@ public class RestResponseEntityEcxeptionHandler
         extends ResponseEntityExceptionHandler {
 
 
-    @ExceptionHandler(BadRequestException.class)
+    @ExceptionHandler(BadParameterRequestException.class)
     protected ResponseEntity<Object> handleBadRequest(RuntimeException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();

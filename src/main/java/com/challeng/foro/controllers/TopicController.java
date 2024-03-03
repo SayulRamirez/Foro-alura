@@ -1,9 +1,7 @@
 package com.challeng.foro.controllers;
 
-import com.challeng.foro.domain.Course;
 import com.challeng.foro.domain.CreateTopic;
-import com.challeng.foro.domain.Topic;
-import com.challeng.foro.domain.User;
+import com.challeng.foro.domain.ResponseCreateTopic;
 import com.challeng.foro.entities.CourseEntity;
 import com.challeng.foro.entities.UserEntity;
 import com.challeng.foro.exceptions.*;
@@ -37,22 +35,18 @@ public class TopicController {
     public ResponseEntity<?> create(@Valid @RequestBody CreateTopic createTopic) {
 
         UserEntity user = userService.existsById(createTopic.author_id());
-        if (user == null) throw new NotExistsAuthorException("Don't exists the user: " + createTopic.author_id());
+        if (user == null) throw new BadParameterRequestException("Don't exists the user: " + createTopic.author_id());
 
         CourseEntity course = courseService.existById(createTopic.courso_id());
-        if (course == null) throw new NotExistsCourseException("Don't exists the course: " + createTopic.courso_id());
+        if (course == null) throw new BadParameterRequestException("Don't exists the course: " + createTopic.courso_id());
 
-        if (!topicService.existsByTitle(createTopic.title())) throw new DuplicateTitleException("The content of the title already exists");
+        if (topicService.existsByTitle(createTopic.title())) throw new BadParameterRequestException("The content of the title already exists");
 
-        if (!topicService.existsByContent(createTopic.content())) throw new DuplicateContentException("The content of the message already exists");
+        if (topicService.existsByContent(createTopic.content())) throw new BadParameterRequestException("The content of the message already exists");
 
-        Topic topic = topicService.create(createTopic, user, course);
+        ResponseCreateTopic topic = topicService.create(createTopic, user, course);
 
-        // creamos la url de respuesta
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(topic.getId()).toUri();
-
-        // respondemos
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(topic.id()).toUri();
 
         return ResponseEntity.created(location).body(topic);
     }

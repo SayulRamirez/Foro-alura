@@ -1,7 +1,8 @@
 package com.challeng.foro.exceptions;
 
-public class BadRequestException extends RuntimeException {
-    public BadRequestException(String message) {
+public class BadParameterRequestException extends RuntimeException {
+
+    public BadParameterRequestException(String message) {
         super(message);
     }
 
