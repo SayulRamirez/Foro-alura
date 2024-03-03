@@ -42,4 +42,12 @@ public class CategoryEntity implements Serializable {
     public void setNameCategory(String nameCategory) {
         this.nameCategory = nameCategory;
     }
+
+    public List<CourseEntity> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<CourseEntity> courses) {
+        this.courses = courses;
+    }
 }

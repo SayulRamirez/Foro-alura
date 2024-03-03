@@ -3,6 +3,8 @@ package com.challeng.foro.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "courses")
@@ -19,6 +21,8 @@ public class CourseEntity implements Serializable {
     @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_category_course"))
     private CategoryEntity category;
 
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private List<TopicEntity> topics = new ArrayList<>();
     public CourseEntity(){}
 
     public CourseEntity(Long id, String name, CategoryEntity category) {
@@ -49,5 +53,13 @@ public class CourseEntity implements Serializable {
 
     public void setCategory(CategoryEntity category) {
         this.category = category;
+    }
+
+    public List<TopicEntity> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<TopicEntity> topics) {
+        this.topics = topics;
     }
 }
