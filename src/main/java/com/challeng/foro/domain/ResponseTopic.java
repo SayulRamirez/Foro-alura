@@ -2,7 +2,7 @@ package com.challeng.foro.domain;
 
 import java.time.LocalDateTime;
 
-public record ResponseAllTopics(
+public record ResponseTopic(
 
         Long id,
         String title,

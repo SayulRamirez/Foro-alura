@@ -31,10 +31,16 @@ public interface TopicService {
      */
     ResponseCreateTopic create(CreateTopic createTopic, UserEntity user, CourseEntity course);
 
-
     /**
      * Find all topics
      * @return List
      */
-    List<ResponseAllTopics> findAll();
+    List<ResponseTopic> findAll();
+
+    /**
+     * Find one topic by id
+     * @param id {@link Long}
+     * @return ResponseTopic
+     */
+    ResponseTopic findById(Long id);
 }

@@ -47,13 +47,13 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public List<ResponseAllTopics> findAll() {
+    public List<ResponseTopic> findAll() {
 
         List<TopicEntity> topicEntities = repository.findAll();
 
-        List<ResponseAllTopics> topics = new ArrayList<>();
+        List<ResponseTopic> topics = new ArrayList<>();
 
-        topicEntities.forEach(topic -> topics.add(new ResponseAllTopics(
+        topicEntities.forEach(topic -> topics.add(new ResponseTopic(
                 topic.getId(),
                 topic.getTitle(),
                 topic.getMessage(),
@@ -64,5 +64,24 @@ public class TopicServiceImpl implements TopicService {
         )));
 
         return topics;
+    }
+
+    @Override
+    public ResponseTopic findById(Long id) {
+
+        TopicEntity topic = repository.findById(id).orElse(null);
+
+        if (topic == null) return null;
+
+        return new ResponseTopic(
+                topic.getId(),
+                topic.getTitle(),
+                topic.getMessage(),
+                topic.getPublicationDate(),
+                topic.getStatus().getStatus(),
+                new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
+                new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory())
+        );
+
     }
 }
