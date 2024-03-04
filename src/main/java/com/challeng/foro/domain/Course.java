@@ -1,6 +1,6 @@
 package com.challeng.foro.domain;
 
-public record CourseR(
+public record Course(
         String name,
         String category
 ) {

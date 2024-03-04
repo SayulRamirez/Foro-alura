@@ -7,23 +7,26 @@ import com.challeng.foro.entities.UserEntity;
 import com.challeng.foro.repositories.TopicRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TopicServiceImpl implements TopicService {
 
-    private final TopicRepository topicRepository;
+    private final TopicRepository repository;
 
-    public TopicServiceImpl(TopicRepository topicRepository) {
-        this.topicRepository = topicRepository;
+    public TopicServiceImpl(TopicRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     public boolean existsByTitle(String title) {
-        return topicRepository.existsByTitle(title);
+        return repository.existsByTitle(title);
     }
 
     @Override
     public boolean existsByContent(String content) {
-        return topicRepository.existsByContent(content);
+        return repository.existsByContent(content);
     }
 
     @Override
@@ -31,7 +34,7 @@ public class TopicServiceImpl implements TopicService {
 
         TopicEntity topic = new TopicEntity(null, createTopic.title(), createTopic.content(), null, null, user, course);
 
-        topicRepository.save(topic);
+        repository.save(topic);
 
         return new ResponseCreateTopic(
                 topic.getId(),
@@ -39,7 +42,27 @@ public class TopicServiceImpl implements TopicService {
                 topic.getMessage(),
                 topic.getPublicationDate(),
                 new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
-                new CourseR(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory())
+                new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory())
         );
+    }
+
+    @Override
+    public List<ResponseAllTopics> findAll() {
+
+        List<TopicEntity> topicEntities = repository.findAll();
+
+        List<ResponseAllTopics> topics = new ArrayList<>();
+
+        topicEntities.forEach(topic -> topics.add(new ResponseAllTopics(
+                topic.getId(),
+                topic.getTitle(),
+                topic.getMessage(),
+                topic.getPublicationDate(),
+                topic.getStatus().getStatus(),
+                new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
+                new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory())
+        )));
+
+        return topics;
     }
 }

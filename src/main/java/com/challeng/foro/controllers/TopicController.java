@@ -1,6 +1,7 @@
 package com.challeng.foro.controllers;
 
 import com.challeng.foro.domain.CreateTopic;
+import com.challeng.foro.domain.ResponseAllTopics;
 import com.challeng.foro.domain.ResponseCreateTopic;
 import com.challeng.foro.entities.CourseEntity;
 import com.challeng.foro.entities.UserEntity;
@@ -8,13 +9,11 @@ import com.challeng.foro.exceptions.*;
 import com.challeng.foro.services.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/topics")
@@ -49,5 +48,13 @@ public class TopicController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(topic.id()).toUri();
 
         return ResponseEntity.created(location).body(topic);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ResponseAllTopics>> findall() {
+
+        List<ResponseAllTopics> topics = topicService.findAll();
+
+        return ResponseEntity.ok(topics);
     }
 }

@@ -4,6 +4,8 @@ import com.challeng.foro.domain.*;
 import com.challeng.foro.entities.CourseEntity;
 import com.challeng.foro.entities.UserEntity;
 
+import java.util.List;
+
 public interface TopicService {
 
     /**
@@ -28,4 +30,11 @@ public interface TopicService {
      * @return Topic
      */
     ResponseCreateTopic create(CreateTopic createTopic, UserEntity user, CourseEntity course);
+
+
+    /**
+     * Find all topics
+     * @return List
+     */
+    List<ResponseAllTopics> findAll();
 }
