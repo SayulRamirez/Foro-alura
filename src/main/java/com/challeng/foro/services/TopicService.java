@@ -52,4 +52,6 @@ public interface TopicService {
     boolean existsById(Long id);
 
     ResponseTopic update(RequestUpdateTopic updateTopic);
+
+    void delete(Long id);
 }

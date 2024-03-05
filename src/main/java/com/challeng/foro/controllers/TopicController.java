@@ -82,4 +82,12 @@ public class TopicController {
 
         return ResponseEntity.ok(topic);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTopic(@PathVariable Long id) {
+
+        topicService.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }

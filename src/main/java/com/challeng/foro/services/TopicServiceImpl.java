@@ -115,4 +115,9 @@ public class TopicServiceImpl implements TopicService {
                 new Author(topicEntity.getAuthor().getId(), topicEntity.getAuthor().getName()),
                 new Course(topicEntity.getCourse().getName(), topicEntity.getCourse().getCategory().getNameCategory()));
     }
+
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
 }
