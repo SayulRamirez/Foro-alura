@@ -15,10 +15,10 @@ public class TopicEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100)
+    @Column(length = 100, unique = true)
     private String title;
 
-    @Column(length = 2000)
+    @Column(length = 2000, unique = true)
     private String content;
 
     @Column(name = "publication_date")

@@ -84,4 +84,35 @@ public class TopicServiceImpl implements TopicService {
         );
 
     }
+
+    @Override
+    public boolean existsById(Long id) {
+
+        return repository.existsById(id);
+    }
+
+    @Override
+    public ResponseTopic update(RequestUpdateTopic updateTopic) {
+
+        TopicEntity topicEntity = repository.findById(updateTopic.topic_id()).orElse(null);
+
+        if (topicEntity == null) return null;
+
+        if (!topicEntity.getAuthor().getId().equals(updateTopic.author_id())) return null;
+
+
+        topicEntity.setTitle(updateTopic.title());
+        topicEntity.setMessage(updateTopic.content());
+
+        repository.save(topicEntity);
+
+        return new ResponseTopic(
+                topicEntity.getId(),
+                topicEntity.getTitle(),
+                topicEntity.getMessage(),
+                topicEntity.getPublicationDate(),
+                topicEntity.getStatus().getStatus(),
+                new Author(topicEntity.getAuthor().getId(), topicEntity.getAuthor().getName()),
+                new Course(topicEntity.getCourse().getName(), topicEntity.getCourse().getCategory().getNameCategory()));
+    }
 }

@@ -16,7 +16,7 @@ public interface TopicService {
     boolean existsByTitle(String title);
 
     /**
-     * Compare id there is a topic with the same content
+     * Compare if there is a topic with the same content
      * @param content {@link String}
      * @return if exists id return true and false if not
      */
@@ -43,4 +43,13 @@ public interface TopicService {
      * @return ResponseTopic
      */
     ResponseTopic findById(Long id);
+
+    /**
+     * Compare if there is a topic with the same id
+     * @param id {@link Long}
+     * @return boolean
+     */
+    boolean existsById(Long id);
+
+    ResponseTopic update(RequestUpdateTopic updateTopic);
 }

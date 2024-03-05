@@ -1,6 +1,7 @@
 package com.challeng.foro.controllers;
 
 import com.challeng.foro.domain.CreateTopic;
+import com.challeng.foro.domain.RequestUpdateTopic;
 import com.challeng.foro.domain.ResponseTopic;
 import com.challeng.foro.domain.ResponseCreateTopic;
 import com.challeng.foro.entities.CourseEntity;
@@ -64,6 +65,20 @@ public class TopicController {
         ResponseTopic topic = topicService.findById(id);
 
         if (topic == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(topic);
+    }
+
+    @PutMapping
+    public ResponseEntity<ResponseTopic> updateTopic(@Valid @RequestBody RequestUpdateTopic updateTopic) {
+
+        if (topicService.existsByTitle(updateTopic.title())) throw new BadParameterRequestException("The content of the title already exists");
+
+        if (topicService.existsByContent(updateTopic.content())) throw new BadParameterRequestException("The content of the message already exists");
+
+        ResponseTopic topic = topicService.update(updateTopic);
+
+        if (topic == null) throw new NotFoundTopic("The topic was not found with the topic number and user number provided");
 
         return ResponseEntity.ok(topic);
     }

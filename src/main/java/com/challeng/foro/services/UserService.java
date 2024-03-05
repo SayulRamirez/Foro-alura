@@ -25,4 +25,11 @@ public interface UserService {
      * @return UserEntity
      */
     UserEntity existsById(Long id);
+
+    /**
+     * Validate that the id exists in the database
+     * @param id {@link Long}
+     * @return boolean
+     */
+    boolean existsByIdBoolean(Long id);
 }

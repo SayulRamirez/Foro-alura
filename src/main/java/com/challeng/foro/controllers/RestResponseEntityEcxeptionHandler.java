@@ -1,6 +1,7 @@
 package com.challeng.foro.controllers;
 
 import com.challeng.foro.exceptions.BadParameterRequestException;
+import com.challeng.foro.exceptions.NotFoundTopic;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -55,6 +57,19 @@ public class RestResponseEntityEcxeptionHandler
         errors.put("Error: ", status.toString());
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotFoundTopic.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    protected Map<String, Object> handleNotFoundTopic(RuntimeException e) {
+
+        Map<String, Object> response = new LinkedHashMap<>();
+
+        response.put("TimeStamp", LocalDateTime.now());
+        response.put("Message", e.getMessage());
+        response.put("Error", HttpStatus.NOT_FOUND);
+
+        return response;
     }
 
 }
