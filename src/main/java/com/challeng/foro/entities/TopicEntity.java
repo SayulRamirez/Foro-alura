@@ -24,15 +24,15 @@ public class TopicEntity implements Serializable {
     @Column(name = "publication_date")
     private LocalDateTime publicationDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_status_topic"))
     private StatusEntity status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_author_topic"))
     private UserEntity author;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_course_topic"))
     private CourseEntity course;
 
