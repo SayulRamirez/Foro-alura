@@ -7,11 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    /**
-     * Exist by email
-     * @param email {@link String}
-     * @return true if exists or false if not
-     */
-    boolean existsByEmail(String email);
 
 }

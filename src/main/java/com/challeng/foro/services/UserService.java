@@ -12,12 +12,6 @@ public interface UserService {
      */
     User create(User user);
 
-    /**
-     * Validate that the email does not exist in the database
-     * @param email {@link String}
-     * @return boolean
-     */
-    boolean existsByEmail(String email);
 
     /**
      * Look for a user and if it exists, return it
@@ -25,11 +19,4 @@ public interface UserService {
      * @return UserEntity
      */
     UserEntity existsById(Long id);
-
-    /**
-     * Validate that the id exists in the database
-     * @param id {@link Long}
-     * @return boolean
-     */
-    boolean existsByIdBoolean(Long id);
 }

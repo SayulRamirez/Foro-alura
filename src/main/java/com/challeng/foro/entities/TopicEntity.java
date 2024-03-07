@@ -15,10 +15,10 @@ public class TopicEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100, unique = true)
+    @Column(length = 100)
     private String title;
 
-    @Column(length = 2000, unique = true)
+    @Column(length = 2000)
     private String content;
 
     @Column(name = "publication_date")
@@ -112,5 +112,13 @@ public class TopicEntity implements Serializable {
         this.publicationDate = LocalDateTime.now();
         this.status = new StatusEntity();
         status.setId(1);
+    }
+
+    public List<AnswerEntity> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<AnswerEntity> answers) {
+        this.answers = answers;
     }
 }

@@ -19,6 +19,6 @@ insert into status(status) values ('NO SOLUCIONADO');
 insert into status(status) values ('SOLUCIONADO');
 insert into status(status) values ('CERRADO');
 
-insert into users(password, email, name) values ('1234' ,'juan@example.com', 'Juan Martin');
-insert into users(password, email, name) values ('5678', 'paola@example.com', 'Paola Castillo');
-insert into users(password, email, name) values ('9875', 'ana@example.com', 'Ana Ramírez');
+insert into users(name) values ('Juan Martin');
+insert into users(name) values ('Paola Castillo');
+insert into users(name) values ('Ana Ramírez');

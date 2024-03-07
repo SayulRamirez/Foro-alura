@@ -27,8 +27,6 @@ public class UserController {
     @PostMapping("/new")
     public ResponseEntity<User> create(@Valid @RequestBody User user) {
 
-        if (service.existsByEmail(user.getEmail())) throw new BadParameterRequestException("The email exists") ;
-
         service.create(user);
 
         URI location = ServletUriComponentsBuilder

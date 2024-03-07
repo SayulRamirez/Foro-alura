@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
 
-        UserEntity userEntity = new UserEntity(null, user.getName(), user.getEmail(), user.getPassword());
+        UserEntity userEntity = new UserEntity(null, user.getName());
 
         repository.save(userEntity);
 
@@ -30,19 +30,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean existsByEmail(String email) {
-
-        return repository.existsByEmail(email);
-    }
-
-    @Override
     public UserEntity existsById(Long id) {
 
         return repository.findById(id).orElse(null);
-    }
-
-    @Override
-    public boolean existsByIdBoolean(Long id) {
-        return repository.existsById(id);
     }
 }
