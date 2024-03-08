@@ -24,20 +24,17 @@ public class AnswerEntity implements Serializable {
     @JoinColumn(name = "author_id", foreignKey = @ForeignKey(name = "fk_author_answer"))
     private UserEntity author;
 
-    private Boolean solution;
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "topic_id", foreignKey = @ForeignKey(name = "fk_topic_answer"))
     private TopicEntity topic;
 
     public AnswerEntity(){}
 
-    public AnswerEntity(Long id, String content, LocalDateTime answerDate, UserEntity author, Boolean solution, TopicEntity topic) {
+    public AnswerEntity(Long id, String content, LocalDateTime answerDate, UserEntity author, TopicEntity topic) {
         this.id = id;
         this.content = content;
         this.answerDate = answerDate;
         this.author = author;
-        this.solution = solution;
         this.topic = topic;
     }
 
@@ -73,14 +70,6 @@ public class AnswerEntity implements Serializable {
         this.author = author;
     }
 
-    public Boolean getSolution() {
-        return solution;
-    }
-
-    public void setSolution(Boolean solution) {
-        this.solution = solution;
-    }
-
     public TopicEntity getTopic() {
         return topic;
     }
@@ -92,6 +81,5 @@ public class AnswerEntity implements Serializable {
     @PrePersist
     private void prePersist() {
         this.answerDate = LocalDateTime.now();
-        this.solution = false;
     }
 }

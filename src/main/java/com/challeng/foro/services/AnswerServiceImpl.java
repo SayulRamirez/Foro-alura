@@ -27,7 +27,7 @@ public class AnswerServiceImpl implements AnswerService {
     public ResponseAnswerCreate addAnswer(CreateAnswer createAnswer, UserEntity userEntity, TopicEntity topicEntity) {
 
         AnswerEntity answerEntity = new AnswerEntity
-                (null, createAnswer.content(), null, userEntity, null, topicEntity);
+                (null, createAnswer.content(), null, userEntity, topicEntity);
 
         repository.save(answerEntity);
 

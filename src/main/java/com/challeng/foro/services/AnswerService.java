@@ -22,7 +22,7 @@ public interface AnswerService {
 
 
     /**
-     * List the answers from a only topic
+     * List the answers from an only topic
      * @param id {@link Long}
      * @return Answer
      */
