@@ -20,5 +20,4 @@ public interface TopicRepository extends JpaRepository<TopicEntity, Long> {
      * @return boolean
      */
     boolean existsByContent(String content);
-
 }

@@ -37,7 +37,7 @@ public class TopicEntity implements Serializable {
     private CourseEntity course;
 
     @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<AnswerEntity> answers = new ArrayList<>();
+    private final List<AnswerEntity> answers = new ArrayList<>();
 
     public TopicEntity(){}
 
@@ -79,10 +79,6 @@ public class TopicEntity implements Serializable {
         return publicationDate;
     }
 
-    public void setPublicationDate(LocalDateTime publicationDate) {
-        this.publicationDate = publicationDate;
-    }
-
     public StatusEntity getStatus() {
         return status;
     }
@@ -103,8 +99,8 @@ public class TopicEntity implements Serializable {
         return course;
     }
 
-    public void setCourse(CourseEntity course) {
-        this.course = course;
+    public List<AnswerEntity> getAnswers() {
+        return answers;
     }
 
     @PrePersist
@@ -112,13 +108,5 @@ public class TopicEntity implements Serializable {
         this.publicationDate = LocalDateTime.now();
         this.status = new StatusEntity();
         status.setId(1);
-    }
-
-    public List<AnswerEntity> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<AnswerEntity> answers) {
-        this.answers = answers;
     }
 }

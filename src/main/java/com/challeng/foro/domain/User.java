@@ -8,16 +8,9 @@ public class User {
 
     private Long id;
 
-    @Size(min = 10, max = 30, message = "It should contain between 10 and 30 charactes")
-    @NotEmpty(message = "The field must be fielled in")
+    @Size(min = 10, max = 30, message = "It should contain between 10 and 30 characters")
+    @NotEmpty(message = "The field must be filled in")
     private String name;
-
-    public User(){}
-
-    public User(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public Long getId() {
         return id;

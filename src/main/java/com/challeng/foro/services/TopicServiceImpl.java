@@ -88,9 +88,7 @@ public class TopicServiceImpl implements TopicService {
                 topic.getStatus().getStatus(),
                 new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
                 new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory()),
-                answers
-        );
-
+                answers);
     }
 
     @Override
@@ -101,7 +99,6 @@ public class TopicServiceImpl implements TopicService {
         if (topicEntity == null) return null;
 
         if (!topicEntity.getAuthor().getId().equals(updateTopic.author_id())) return null;
-
 
         topicEntity.setTitle(updateTopic.title());
         topicEntity.setMessage(updateTopic.content());
@@ -124,8 +121,5 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public TopicEntity getTopic(Long id) {
-
-        return repository.findById(id).orElse(null);
-    }
+    public TopicEntity getTopic(Long id) {return repository.findById(id).orElse(null);}
 }

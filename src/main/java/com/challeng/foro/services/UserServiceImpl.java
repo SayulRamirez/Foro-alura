@@ -16,7 +16,6 @@ public class UserServiceImpl implements UserService {
         this.repository = repository;
     }
 
-
     @Override
     public User create(User user) {
 
@@ -30,8 +29,5 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity existsById(Long id) {
-
-        return repository.findById(id).orElse(null);
-    }
+    public UserEntity existsById(Long id) {return repository.findById(id).orElse(null);}
 }

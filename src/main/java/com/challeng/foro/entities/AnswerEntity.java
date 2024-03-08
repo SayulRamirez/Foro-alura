@@ -58,10 +58,6 @@ public class AnswerEntity implements Serializable {
         return answerDate;
     }
 
-    public void setAnswerDate(LocalDateTime answerDate) {
-        this.answerDate = answerDate;
-    }
-
     public UserEntity getAuthor() {
         return author;
     }

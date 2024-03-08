@@ -20,13 +20,14 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
 @RestControllerAdvice
-public class RestResponseEntityEcxeptionHandler
+public class RestResponseEntityExceptionHandler
         extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(BadParameterRequestException.class)
-    protected ResponseEntity<Object> handleBadRequest(RuntimeException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleBadRequest(RuntimeException ex) {
 
         Map<String, Object> body = new LinkedHashMap<>();
 
@@ -37,6 +38,7 @@ public class RestResponseEntityEcxeptionHandler
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
+    @SuppressWarnings("all")
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
@@ -85,5 +87,4 @@ public class RestResponseEntityEcxeptionHandler
 
         return response;
     }
-
 }

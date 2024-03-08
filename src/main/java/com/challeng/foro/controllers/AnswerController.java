@@ -65,7 +65,7 @@ public class AnswerController {
 
         Answer answer = answerService.edit(updateAnswer);
 
-        if (answer == null) throw new NotFoundAnswer("Not exists answer whit data provied");
+        if (answer == null) throw new NotFoundAnswer("Not exists answer whit data provided");
 
         return ResponseEntity.ok(answer);
     }

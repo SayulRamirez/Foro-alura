@@ -23,13 +23,8 @@ public class CourseEntity implements Serializable {
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private List<TopicEntity> topics = new ArrayList<>();
-    public CourseEntity(){}
 
-    public CourseEntity(Long id, String name, CategoryEntity category) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-    }
+    public CourseEntity(){}
 
     public Long getId() {
         return id;
@@ -51,15 +46,7 @@ public class CourseEntity implements Serializable {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
-        this.category = category;
-    }
-
     public List<TopicEntity> getTopics() {
         return topics;
-    }
-
-    public void setTopics(List<TopicEntity> topics) {
-        this.topics = topics;
     }
 }

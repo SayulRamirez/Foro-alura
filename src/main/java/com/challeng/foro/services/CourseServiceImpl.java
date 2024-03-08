@@ -18,10 +18,7 @@ public class CourseServiceImpl implements CourseService {
 
 
     @Override
-    public CourseEntity findById(Long id) {
-
-        return repository.findById(id).orElse(null);
-    }
+    public CourseEntity findById(Long id) {return repository.findById(id).orElse(null);}
 
     @Override
     public boolean existsCourse(Long id) {

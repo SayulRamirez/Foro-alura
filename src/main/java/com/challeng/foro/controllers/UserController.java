@@ -1,7 +1,6 @@
 package com.challeng.foro.controllers;
 
 import com.challeng.foro.domain.User;
-import com.challeng.foro.exceptions.BadParameterRequestException;
 import com.challeng.foro.services.UserService;
 import com.challeng.foro.services.UserServiceImpl;
 import jakarta.validation.Valid;
