@@ -120,4 +120,10 @@ public class TopicServiceImpl implements TopicService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public TopicEntity getTopic(Long id) {
+
+        return repository.findById(id).orElse(null);
+    }
 }

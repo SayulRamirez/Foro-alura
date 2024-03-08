@@ -2,6 +2,7 @@ package com.challeng.foro.services;
 
 import com.challeng.foro.domain.*;
 import com.challeng.foro.entities.CourseEntity;
+import com.challeng.foro.entities.TopicEntity;
 import com.challeng.foro.entities.UserEntity;
 
 import java.util.List;
@@ -54,4 +55,6 @@ public interface TopicService {
     ResponseTopic update(RequestUpdateTopic updateTopic);
 
     void delete(Long id);
+
+    TopicEntity getTopic(Long id);
 }

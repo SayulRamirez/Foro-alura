@@ -88,4 +88,10 @@ public class AnswerEntity implements Serializable {
     public void setTopic(TopicEntity topic) {
         this.topic = topic;
     }
+
+    @PrePersist
+    private void prePersist() {
+        this.answerDate = LocalDateTime.now();
+        this.solution = false;
+    }
 }
