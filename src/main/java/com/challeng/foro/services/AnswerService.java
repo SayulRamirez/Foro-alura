@@ -3,6 +3,7 @@ package com.challeng.foro.services;
 import com.challeng.foro.domain.Answer;
 import com.challeng.foro.domain.CreateAnswer;
 import com.challeng.foro.domain.ResponseAnswerCreate;
+import com.challeng.foro.domain.UpdateAnswer;
 import com.challeng.foro.entities.TopicEntity;
 import com.challeng.foro.entities.UserEntity;
 
@@ -26,4 +27,11 @@ public interface AnswerService {
      * @return Answer
      */
     List<Answer> allAnswers(Long id);
+
+    /**
+     * Update answer
+     * @param updateAnswer {@link UpdateAnswer}
+     * @return Answer
+     */
+    Answer edit(UpdateAnswer updateAnswer);
 }

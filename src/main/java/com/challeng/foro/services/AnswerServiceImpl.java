@@ -59,4 +59,20 @@ public class AnswerServiceImpl implements AnswerService {
 
         return answers;
     }
+
+    @Override
+    public Answer edit(UpdateAnswer updateAnswer) {
+
+        AnswerEntity answerEntity = repository.findById(updateAnswer.answer_id()).orElse(null);
+
+        if (answerEntity == null
+                || !answerEntity.getAuthor().getId().equals(updateAnswer.author_id())
+                || !answerEntity.getTopic().getId().equals(updateAnswer.topic_id())) return null;
+
+        answerEntity.setContent(updateAnswer.content());
+
+        repository.save(answerEntity);
+
+        return new Answer(answerEntity.getContent(), answerEntity.getAnswerDate(), answerEntity.getAuthor().getName());
+    }
 }

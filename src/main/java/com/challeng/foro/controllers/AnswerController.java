@@ -3,9 +3,12 @@ package com.challeng.foro.controllers;
 import com.challeng.foro.domain.Answer;
 import com.challeng.foro.domain.CreateAnswer;
 import com.challeng.foro.domain.ResponseAnswerCreate;
+import com.challeng.foro.domain.UpdateAnswer;
+import com.challeng.foro.entities.AnswerEntity;
 import com.challeng.foro.entities.TopicEntity;
 import com.challeng.foro.entities.UserEntity;
 import com.challeng.foro.exceptions.BadParameterRequestException;
+import com.challeng.foro.exceptions.NotFoundAnswer;
 import com.challeng.foro.services.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -56,5 +59,15 @@ public class AnswerController {
         if (answers == null) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(answers);
+    }
+
+    @PutMapping
+    public ResponseEntity<Answer> editAnswer(@Valid @RequestBody UpdateAnswer updateAnswer) {
+
+        Answer answer = answerService.edit(updateAnswer);
+
+        if (answer == null) throw new NotFoundAnswer("Not exists answer whit data provied");
+
+        return ResponseEntity.ok(answer);
     }
 }
