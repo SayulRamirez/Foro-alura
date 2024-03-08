@@ -4,7 +4,6 @@ import com.challeng.foro.domain.Answer;
 import com.challeng.foro.domain.CreateAnswer;
 import com.challeng.foro.domain.ResponseAnswerCreate;
 import com.challeng.foro.domain.UpdateAnswer;
-import com.challeng.foro.entities.AnswerEntity;
 import com.challeng.foro.entities.TopicEntity;
 import com.challeng.foro.entities.UserEntity;
 import com.challeng.foro.exceptions.BadParameterRequestException;
@@ -69,5 +68,13 @@ public class AnswerController {
         if (answer == null) throw new NotFoundAnswer("Not exists answer whit data provied");
 
         return ResponseEntity.ok(answer);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAnswer(@PathVariable Long id) {
+
+        answerService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

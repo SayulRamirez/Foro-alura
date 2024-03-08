@@ -34,4 +34,10 @@ public interface AnswerService {
      * @return Answer
      */
     Answer edit(UpdateAnswer updateAnswer);
+
+    /**
+     * Delete answer
+     * @param id {@link Long}
+     */
+    void delete(Long id);
 }

@@ -75,4 +75,9 @@ public class AnswerServiceImpl implements AnswerService {
 
         return new Answer(answerEntity.getContent(), answerEntity.getAnswerDate(), answerEntity.getAuthor().getName());
     }
+
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
 }
