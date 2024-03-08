@@ -1,6 +1,7 @@
 package com.challeng.foro.services;
 
 import com.challeng.foro.domain.*;
+import com.challeng.foro.entities.AnswerEntity;
 import com.challeng.foro.entities.CourseEntity;
 import com.challeng.foro.entities.TopicEntity;
 import com.challeng.foro.entities.UserEntity;
@@ -67,20 +68,27 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public ResponseTopic findById(Long id) {
+    public DetailedTopic findById(Long id) {
 
         TopicEntity topic = repository.findById(id).orElse(null);
 
         if (topic == null) return null;
 
-        return new ResponseTopic(
+        List<AnswerEntity> answersEntity = topic.getAnswers();
+
+        List<Answer> answers = new ArrayList<>();
+
+        answersEntity.forEach(a -> answers.add(new Answer(a.getContent(), a.getAnswerDate(), a.getAuthor().getName())));
+
+        return new DetailedTopic(
                 topic.getId(),
                 topic.getTitle(),
                 topic.getMessage(),
                 topic.getPublicationDate(),
                 topic.getStatus().getStatus(),
                 new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
-                new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory())
+                new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory()),
+                answers
         );
 
     }

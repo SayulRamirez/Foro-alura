@@ -1,9 +1,6 @@
 package com.challeng.foro.controllers;
 
-import com.challeng.foro.domain.CreateTopic;
-import com.challeng.foro.domain.RequestUpdateTopic;
-import com.challeng.foro.domain.ResponseTopic;
-import com.challeng.foro.domain.ResponseCreateTopic;
+import com.challeng.foro.domain.*;
 import com.challeng.foro.entities.CourseEntity;
 import com.challeng.foro.entities.UserEntity;
 import com.challeng.foro.exceptions.*;
@@ -60,9 +57,9 @@ public class TopicController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseTopic> findTopic(@PathVariable Long id) {
+    public ResponseEntity<DetailedTopic> findTopic(@PathVariable Long id) {
 
-        ResponseTopic topic = topicService.findById(id);
+        DetailedTopic topic = topicService.findById(id);
 
         if (topic == null) return ResponseEntity.notFound().build();
 

@@ -43,7 +43,7 @@ public interface TopicService {
      * @param id {@link Long}
      * @return ResponseTopic
      */
-    ResponseTopic findById(Long id);
+    DetailedTopic findById(Long id);
 
     /**
      * Compare if there is a topic with the same id
