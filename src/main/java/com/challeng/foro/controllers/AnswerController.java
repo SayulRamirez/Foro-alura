@@ -1,5 +1,6 @@
 package com.challeng.foro.controllers;
 
+import com.challeng.foro.domain.Answer;
 import com.challeng.foro.domain.CreateAnswer;
 import com.challeng.foro.domain.ResponseAnswerCreate;
 import com.challeng.foro.entities.TopicEntity;
@@ -8,13 +9,11 @@ import com.challeng.foro.exceptions.BadParameterRequestException;
 import com.challeng.foro.services.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/answers")
@@ -47,5 +46,15 @@ public class AnswerController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(response.answer_id()).toUri();
 
         return ResponseEntity.created(location).body(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Answer>> allAnswers(@PathVariable Long id) {
+
+        List<Answer> answers = answerService.allAnswers(id);
+
+        if (answers == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(answers);
     }
 }

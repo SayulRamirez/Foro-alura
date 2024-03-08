@@ -1,9 +1,6 @@
 package com.challeng.foro.services;
 
-import com.challeng.foro.domain.Author;
-import com.challeng.foro.domain.CreateAnswer;
-import com.challeng.foro.domain.ResponseAnswerCreate;
-import com.challeng.foro.domain.Topic;
+import com.challeng.foro.domain.*;
 import com.challeng.foro.entities.AnswerEntity;
 import com.challeng.foro.entities.StatusEntity;
 import com.challeng.foro.entities.TopicEntity;
@@ -11,6 +8,9 @@ import com.challeng.foro.entities.UserEntity;
 import com.challeng.foro.repositories.AnswerRepository;
 import com.challeng.foro.repositories.TopicRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -43,5 +43,20 @@ public class AnswerServiceImpl implements AnswerService {
                 new Author(answerEntity.getAuthor().getId(), answerEntity.getAuthor().getName()),
                 new Topic(answerEntity.getTopic().getId(), answerEntity.getTopic().getTitle(), answerEntity.getTopic().getMessage())
         );
+    }
+
+    @Override
+    public List<Answer> allAnswers(Long id) {
+
+        TopicEntity topicEntity = topicRepository.findById(id).orElse(null);
+
+        if (topicEntity == null) return null;
+
+        List<AnswerEntity> answerEntities = topicEntity.getAnswers();
+
+        List<Answer> answers = new ArrayList<>();
+        answerEntities.forEach(a -> answers.add(new Answer(a.getContent(), a.getAnswerDate(), a.getAuthor().getName())));
+
+        return answers;
     }
 }

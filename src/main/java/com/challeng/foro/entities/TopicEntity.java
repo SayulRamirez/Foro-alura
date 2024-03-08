@@ -36,7 +36,7 @@ public class TopicEntity implements Serializable {
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_course_topic"))
     private CourseEntity course;
 
-    @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<AnswerEntity> answers = new ArrayList<>();
 
     public TopicEntity(){}
