@@ -2,6 +2,7 @@ package com.challeng.foro.controllers;
 
 import com.challeng.foro.domain.*;
 import com.challeng.foro.entities.CourseEntity;
+import com.challeng.foro.entities.TopicEntity;
 import com.challeng.foro.entities.UserEntity;
 import com.challeng.foro.exceptions.*;
 import com.challeng.foro.services.*;
@@ -34,7 +35,7 @@ public class TopicController {
         UserEntity user = userService.existsById(createTopic.author_id());
         if (user == null) throw new BadParameterRequestException("Don't exists the user: " + createTopic.author_id());
 
-        CourseEntity course = courseService.existById(createTopic.courso_id());
+        CourseEntity course = courseService.findById(createTopic.courso_id());
         if (course == null) throw new BadParameterRequestException("Don't exists the course: " + createTopic.courso_id());
 
         if (topicService.existsByTitle(createTopic.title())) throw new BadParameterRequestException("The content of the title already exists");
@@ -64,6 +65,16 @@ public class TopicController {
         if (topic == null) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(topic);
+    }
+
+    @GetMapping("/shearch/{id}")
+    public ResponseEntity<List<TopicSearch>> searchTopic(@PathVariable Long id) {
+
+        if (!courseService.existsCourse(id)) throw new BadParameterRequestException("Don´t exist course");
+
+        List<TopicSearch> topics = courseService.searchByCourse(id);
+
+        return ResponseEntity.ok(topics);
     }
 
     @PutMapping

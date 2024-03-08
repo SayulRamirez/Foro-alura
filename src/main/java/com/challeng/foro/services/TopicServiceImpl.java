@@ -94,12 +94,6 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public boolean existsById(Long id) {
-
-        return repository.existsById(id);
-    }
-
-    @Override
     public ResponseTopic update(RequestUpdateTopic updateTopic) {
 
         TopicEntity topicEntity = repository.findById(updateTopic.topic_id()).orElse(null);

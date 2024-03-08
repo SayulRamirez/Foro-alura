@@ -46,15 +46,22 @@ public interface TopicService {
     DetailedTopic findById(Long id);
 
     /**
-     * Compare if there is a topic with the same id
-     * @param id {@link Long}
-     * @return boolean
+     * Update topic
+     * @param updateTopic {@link RequestUpdateTopic}
+     * @return ResponseTopic
      */
-    boolean existsById(Long id);
-
     ResponseTopic update(RequestUpdateTopic updateTopic);
 
+    /**
+     * Delete topic
+     * @param id {@link Long}
+     */
     void delete(Long id);
 
+    /**
+     * Recuperate topic by id
+     * @param id {@link Long}
+     * @return TopicEntity
+     */
     TopicEntity getTopic(Long id);
 }
