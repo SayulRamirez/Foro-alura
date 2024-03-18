@@ -3,6 +3,7 @@ package com.challeng.foro.controllers;
 import com.challeng.foro.exceptions.BadParameterRequestException;
 import com.challeng.foro.exceptions.NotFoundAnswer;
 import com.challeng.foro.exceptions.NotFoundTopic;
+import com.challeng.foro.exceptions.NotFoundUser;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -78,6 +79,19 @@ public class RestResponseEntityExceptionHandler
     @ExceptionHandler(NotFoundAnswer.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     protected  Map<String, Object> handleNotFoundAnswer(RuntimeException e) {
+
+        Map<String, Object> response = new LinkedHashMap<>();
+
+        response.put("TimeStamp", LocalDateTime.now());
+        response.put("Message", e.getMessage());
+        response.put("Error:", HttpStatus.NOT_FOUND);
+
+        return response;
+    }
+
+    @ExceptionHandler(NotFoundUser.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    protected  Map<String, Object> handleNotFoundUser(RuntimeException e) {
 
         Map<String, Object> response = new LinkedHashMap<>();
 
