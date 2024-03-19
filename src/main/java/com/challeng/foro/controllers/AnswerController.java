@@ -69,6 +69,13 @@ public class AnswerController {
         return ResponseEntity.created(location).body(response);
     }
 
+
+    @Operation(summary = "Enlist all answer", description = "Lists all the responses of a topic passing the topic identifier as a parameter",
+            parameters = @Parameter(name = "id", description = "Topic identifier", example = "1"),
+            responses = {@ApiResponse(description = "If not found topic", responseCode = "404"),
+                    @ApiResponse(description = "Return answers list", responseCode = "200")
+            }
+    )
     @GetMapping("/{id}")
     public ResponseEntity<List<Answer>> allAnswers(@PathVariable Long id) {
 
@@ -79,6 +86,14 @@ public class AnswerController {
         return ResponseEntity.ok(answers);
     }
 
+    @Operation(summary = "Edit answer", description = "Edit the content of the response",
+            parameters = @Parameter(name = "UpdateAnswer", schema = @Schema(contains = UpdateAnswer.class)),
+            responses = {
+                    @ApiResponse(description = "If answer not found", responseCode = "404"),
+                    @ApiResponse(description = "Return edited answer", responseCode = "200",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Answer.class)))
+            }
+    )
     @PutMapping
     public ResponseEntity<Answer> editAnswer(@Valid @RequestBody UpdateAnswer updateAnswer) {
 
@@ -89,6 +104,10 @@ public class AnswerController {
         return ResponseEntity.ok(answer);
     }
 
+    @Operation(summary = "Delete an answer", description = "Delete a response using its identifier",
+            parameters = @Parameter(name = "id", example = "12"),
+            responses = @ApiResponse(description = "Deletion of the answer.", responseCode = "204", content = @Content(mediaType = "Not content"))
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAnswer(@PathVariable Long id) {
 
