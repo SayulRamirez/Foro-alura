@@ -29,7 +29,7 @@ import java.util.List;
         description = "In general, it allows you to add a new answer to a topic, list all the answers that a single topic contains. Also edit and delete a reply."
 )
 @RestController
-@RequestMapping("/answers")
+@RequestMapping("/api/v1/answers")
 public class AnswerController {
 
     private final AnswerService answerService;

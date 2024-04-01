@@ -22,7 +22,7 @@ import java.util.List;
 
 @Tag(name = "Topic controller", description = "CRUD the topics and search a topic by a course")
 @RestController
-@RequestMapping("/topics")
+@RequestMapping("/api/v1/topics")
 public class TopicController {
 
     private final TopicService topicService;
