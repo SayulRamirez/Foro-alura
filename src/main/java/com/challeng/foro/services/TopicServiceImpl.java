@@ -42,7 +42,7 @@ public class TopicServiceImpl implements TopicService {
                 topic.getTitle(),
                 topic.getMessage(),
                 topic.getPublicationDate(),
-                new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
+                new Author(topic.getAuthor().getId(), topic.getAuthor().getUsername()),
                 new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory())
         );
     }
@@ -60,7 +60,7 @@ public class TopicServiceImpl implements TopicService {
                 topic.getMessage(),
                 topic.getPublicationDate(),
                 topic.getStatus().getStatus(),
-                new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
+                new Author(topic.getAuthor().getId(), topic.getAuthor().getUsername()),
                 new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory())
         )));
 
@@ -78,7 +78,7 @@ public class TopicServiceImpl implements TopicService {
 
         List<Answer> answers = new ArrayList<>();
 
-        answersEntity.forEach(a -> answers.add(new Answer(a.getContent(), a.getAnswerDate(), a.getAuthor().getName())));
+        answersEntity.forEach(a -> answers.add(new Answer(a.getContent(), a.getAnswerDate(), a.getAuthor().getUsername())));
 
         return new DetailedTopic(
                 topic.getId(),
@@ -86,7 +86,7 @@ public class TopicServiceImpl implements TopicService {
                 topic.getMessage(),
                 topic.getPublicationDate(),
                 topic.getStatus().getStatus(),
-                new Author(topic.getAuthor().getId(), topic.getAuthor().getName()),
+                new Author(topic.getAuthor().getId(), topic.getAuthor().getUsername()),
                 new Course(topic.getCourse().getName(), topic.getCourse().getCategory().getNameCategory()),
                 answers);
     }
@@ -111,7 +111,7 @@ public class TopicServiceImpl implements TopicService {
                 topicEntity.getMessage(),
                 topicEntity.getPublicationDate(),
                 topicEntity.getStatus().getStatus(),
-                new Author(topicEntity.getAuthor().getId(), topicEntity.getAuthor().getName()),
+                new Author(topicEntity.getAuthor().getId(), topicEntity.getAuthor().getUsername()),
                 new Course(topicEntity.getCourse().getName(), topicEntity.getCourse().getCategory().getNameCategory()));
     }
 

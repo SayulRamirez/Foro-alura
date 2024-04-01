@@ -40,7 +40,7 @@ public class AnswerServiceImpl implements AnswerService {
                 answerEntity.getId(),
                 answerEntity.getContent(),
                 answerEntity.getAnswerDate(),
-                new Author(answerEntity.getAuthor().getId(), answerEntity.getAuthor().getName()),
+                new Author(answerEntity.getAuthor().getId(), answerEntity.getAuthor().getUsername()),
                 new Topic(answerEntity.getTopic().getId(), answerEntity.getTopic().getTitle(), answerEntity.getTopic().getMessage())
         );
     }
@@ -55,7 +55,7 @@ public class AnswerServiceImpl implements AnswerService {
         List<AnswerEntity> answerEntities = topicEntity.getAnswers();
 
         List<Answer> answers = new ArrayList<>();
-        answerEntities.forEach(a -> answers.add(new Answer(a.getContent(), a.getAnswerDate(), a.getAuthor().getName())));
+        answerEntities.forEach(a -> answers.add(new Answer(a.getContent(), a.getAnswerDate(), a.getAuthor().getUsername())));
 
         return answers;
     }
@@ -73,7 +73,7 @@ public class AnswerServiceImpl implements AnswerService {
 
         repository.save(answerEntity);
 
-        return new Answer(answerEntity.getContent(), answerEntity.getAnswerDate(), answerEntity.getAuthor().getName());
+        return new Answer(answerEntity.getContent(), answerEntity.getAnswerDate(), answerEntity.getAuthor().getUsername());
     }
 
     @Override
