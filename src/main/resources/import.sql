@@ -18,7 +18,3 @@ insert into status(status) values ('NO RESPONDIDO');
 insert into status(status) values ('NO SOLUCIONADO');
 insert into status(status) values ('SOLUCIONADO');
 insert into status(status) values ('CERRADO');
-
-insert into users(name) values ('Juan Martin');
-insert into users(name) values ('Paola Castillo');
-insert into users(name) values ('Ana Ramírez');
