@@ -16,17 +16,6 @@ public class UserServiceImpl implements UserService {
         this.repository = repository;
     }
 
-    @Override
-    public User create(User user) {
-
-        UserEntity userEntity = new UserEntity(null, user.getName());
-
-        repository.save(userEntity);
-
-        user.setId(userEntity.getId());
-
-        return user;
-    }
 
     @Override
     public UserEntity existsById(Long id) {return repository.findById(id).orElse(null);}
